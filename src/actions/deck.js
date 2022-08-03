@@ -15,6 +15,7 @@ const types = {
     SET_DEFAULT_COLOR: 'deck.default.color',
 
     ADD_CARDS_FROM_DATA: 'deck.concat.cards',
+    RESET_OPTIONS: 'deck.reset.options',
 };
 
 const actions = {
@@ -50,6 +51,7 @@ const actions = {
     setDefaultColor: (value) => ({ type: types.SET_DEFAULT_COLOR, value }),
     addCardsFromData: (value) => ({ type: types.ADD_CARDS_FROM_DATA, value }),
     deleteAll: () => ({ type: types.DELETE_ALL }),
+    resetOptions: () => ({ type: types.RESET_OPTIONS }),
 };
 
 export default { types, actions };

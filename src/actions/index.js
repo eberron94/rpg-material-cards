@@ -39,6 +39,8 @@ export const createDispatch = (store) => ({
 
         addCardsFromData: (value) =>
             store.dispatch(deck.actions.addCardsFromData(value)),
+        resetOptions: (value) =>
+            store.dispatch(deck.actions.resetOptions(value)),
     },
     page: {
         setWidth: (value) => store.dispatch(page.actions.setWidth(value)),

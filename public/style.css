@@ -23,3 +23,11 @@ body {
         margin: 0;
     }
 }
+
+body
+    > div.MuiDialog-root
+    > div.MuiDialog-container.MuiDialog-scrollPaper
+    > div
+    > div.MuiDialogContent-root {
+    overflow: hidden;
+}

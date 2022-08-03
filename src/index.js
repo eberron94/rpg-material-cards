@@ -1,3 +1,4 @@
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,6 +11,8 @@ import {
     PrintPreview,
 } from './components/app';
 
+import { createTheme, ThemeProvider } from '@mui/material';
+import { indigo, red } from '@mui/material/colors';
 import { store } from './data';
 
 const MainPage = () => {
@@ -23,20 +26,45 @@ const MainPage = () => {
 
     const dispatch = createDispatch(store);
 
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: indigo[500],
+            },
+            secondary: {
+                main: red[300],
+            },
+        },
+        overrides: {
+            MuiDropzoneSnackbar: {
+                errorAlert: {
+                    backgroundColor: '#AFA',
+                    color: '#000',
+                },
+                successAlert: {
+                    backgroundColor: '#FAA',
+                    color: '#000',
+                },
+            },
+        },
+    });
+
     return (
-        <>
-            <DeckOptions iconMap={iconMap} dispatch={dispatch} />
-            <CardOptions
-                className='generator'
-                iconMap={iconMap}
-                dispatch={dispatch}
-            />
-            <CardPreview
-                className='render'
-                iconMap={iconMap}
-                dispatch={dispatch}
-            />
-        </>
+        <MuiThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+                <DeckOptions iconMap={iconMap} dispatch={dispatch} />
+                <CardOptions
+                    className='generator'
+                    iconMap={iconMap}
+                    dispatch={dispatch}
+                />
+                <CardPreview
+                    className='render'
+                    iconMap={iconMap}
+                    dispatch={dispatch}
+                />
+            </ThemeProvider>
+        </MuiThemeProvider>
     );
 };
 

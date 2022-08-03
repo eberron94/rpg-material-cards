@@ -1,6 +1,7 @@
 import { InputAdornment, Typography } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { initialState } from '../../data/model';
 import selectors from '../../selectors';
 import {
     AppContainer,
@@ -14,7 +15,7 @@ import {
     SuperColumn,
     TextInput,
 } from './css';
-import { ColorPicker, IconPicker, PasteLoad } from './picker';
+import { ColorPicker, ConfirmDialog, IconPicker, PasteLoad, FileLoad } from './modal';
 
 export default (props) => {
     return (
@@ -42,23 +43,61 @@ export default (props) => {
 
 const DataManagement = ({ dispatch }) => {
     const handleDeleteAll = () => dispatch.deck.deleteAll();
+    const handleResetOptions = () => dispatch.deck.resetOptions();
+
+    const sampleProps = {
+        title: 'Are you sure you want to add the sample cards?',
+        message:
+            'This will add all the sample cards to the current deck. You can delete them later.',
+        onConfirm: () => dispatch.deck.addCardsFromData(initialState().cards),
+    };
+
+    const deleteAllProps = {
+        title: 'Are you sure you want to delete all cards?',
+        message:
+            'This action cannot be undone. All cards will be removed from current deck.',
+        warning: true,
+        onConfirm: handleDeleteAll,
+    };
+
+    const resetOptionProps = {
+        title: 'Are you sure you want to reset print size, card size, and default values?',
+        message: `This action cannot be undone.
+            All settings for printing, card size, and default values will be reset.`,
+        warning: true,
+        onConfirm: handleResetOptions,
+    };
+
     return (
         <Column>
             <Row>
                 <Button variant='outlined'>Open Help</Button>
-                <Button variant='outlined'>Load Sample</Button>
-                <Button
-                    variant='contained'
-                    color='secondary'
-                    onClick={handleDeleteAll}
-                >
-                    Delete All
-                </Button>
+                <ConfirmDialog variant='outlined' {...sampleProps}>
+                    Load Sample
+                </ConfirmDialog>
+                <Button variant='contained'>Switch Deck</Button>
             </Row>
             <Row>
-                <Button variant='contained'>Add From File</Button>
                 <PasteLoad dispatch={dispatch} />
+                <FileLoad dispatch={dispatch}/>
+
                 <Button variant='contained'>Save to File</Button>
+            </Row>
+            <Row>
+                <ConfirmDialog
+                    variant='contained'
+                    color='secondary'
+                    {...deleteAllProps}
+                >
+                    Delete All
+                </ConfirmDialog>
+                <ConfirmDialog
+                    variant='contained'
+                    color='secondary'
+                    {...resetOptionProps}
+                >
+                    Reset Default and Printing
+                </ConfirmDialog>
             </Row>
             <Button variant='contained' href='/print'>
                 Generate Pages to Print
@@ -315,11 +354,18 @@ const PaperSize = ({ dispatch }) => {
         </Button>
     );
 
-    const onRotate = () => {
+    const onRotateSize = () => {
         const tempHeight = heightProps.value + sizeProp.value,
             tempWidth = widthProps.value + sizeProp.value;
         dispatch.page.setWidth(tempHeight);
         dispatch.page.setHeight(tempWidth);
+    };
+
+    const onRotateUp = () => {
+        const tempRow = rowProps.value,
+            tempCol = colProps.value;
+        dispatch.page.setCols(tempRow);
+        dispatch.page.setRows(tempCol);
     };
 
     return (
@@ -373,7 +419,7 @@ const PaperSize = ({ dispatch }) => {
                 <Row>
                     <Button
                         color='primary'
-                        onClick={onRotate}
+                        onClick={onRotateSize}
                         tooltip='Switch between landscape and portrait orientation'
                     >
                         Rotate orientation
@@ -400,6 +446,15 @@ const PaperSize = ({ dispatch }) => {
                             {...colProps}
                         />
                     </InputContainer>
+                </Row>
+                <Row>
+                    <Button
+                        color='primary'
+                        onClick={onRotateUp}
+                        tooltip='Swap rows and columns'
+                    >
+                        Rotate Rows and Columns
+                    </Button>
                 </Row>
             </Column>
             <Column gap='4'>

@@ -6,10 +6,11 @@ import {
     DialogTitle,
     TextField,
 } from '@mui/material';
+import { DropzoneDialog } from 'material-ui-dropzone';
 
 export const PickerButton = styled(Button)`
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-start !important;
     gap: 8px;
 
     width: 100%;
@@ -154,6 +155,8 @@ export const ColorGridItem = styled.div`
     }
 `;
 
+
+
 export const StyledDialogActions = styled(DialogActions)`
     display: flex;
     justify-content: space-between;
@@ -166,6 +169,7 @@ export const StyledDialogTitle = styled(DialogTitle)`
 
 export const StyledDialogContent = styled(DialogContent)`
     overflow: hidden;
+    white-space: pre-line;
 `;
 
 export const RotationControls = styled.div``;

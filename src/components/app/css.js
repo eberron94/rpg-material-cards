@@ -73,9 +73,8 @@ export const SelectInput = styled(Select)`
 `;
 
 export const CardPageButton = styled(Button)`
-    // width: 100%;
     flex: ${(e) => e.flex || 1};
-    margin: 4px;
+    
 `;
 
 export const ContentArea = styled.textarea`
@@ -111,6 +110,7 @@ export const TogglePreview = styled.div`
     width: 100%;
     display: flex;
     justify-content: flex-start;
+    gap: 4px;
 `;
 
 export const MissingData = styled.div`

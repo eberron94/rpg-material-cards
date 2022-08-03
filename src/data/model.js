@@ -62,6 +62,7 @@ const sanitize = ({
     count,
     color,
     title,
+    icon,
     icon_front,
     icon_back,
     qr,
@@ -75,7 +76,7 @@ const sanitize = ({
     saneCard.count = saneIntPositive(count, 1);
     saneCard.color = saneStr(color, '');
     saneCard.title = saneStr(title, 'UNKNOWN TITLE');
-    saneCard.icon_front = saneStr(icon_front, '');
+    saneCard.icon_front = saneStr(icon_front || icon, '');
     saneCard.icon_back = saneStr(icon_back, '');
     saneCard.qr = saneStr(qr, '');
     saneCard.title_font_size = saneIntPositive(title_font_size, 0);

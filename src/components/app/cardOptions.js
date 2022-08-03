@@ -18,7 +18,7 @@ import {
     TextInput,
 } from './css';
 import OrderCards from './dnd';
-import { ColorPicker, IconPicker } from './picker';
+import { ColorPicker, IconPicker } from './modal';
 
 export default (props) => {
     const cardId = useSelector(selectors.card.id);

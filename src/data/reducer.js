@@ -1,7 +1,7 @@
 import { color } from '@mui/system';
 import { types } from '../actions';
 import { cape } from '../util/dataUtil';
-import { duplicateCard, initCard, initialState } from './model';
+import { defaultOptions, duplicateCard, initCard, initialState } from './model';
 
 const findCardIndex = (deck, id) => deck.findIndex(({ _idv4 }) => _idv4 === id);
 
@@ -121,6 +121,10 @@ export const rootReducer = (state = initialState(), action) => {
         case types.deck.DELETE_ALL:
             newState.cards = [];
             newState.card = null;
+            return newState;
+
+        case types.deck.RESET_OPTIONS:
+            newState.options = defaultOptions();
             return newState;
     }
 
