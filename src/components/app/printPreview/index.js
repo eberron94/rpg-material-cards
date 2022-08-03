@@ -28,8 +28,6 @@ export default ({ iconMap }) => {
         options,
     };
 
-    console.log(cards);
-
     const Blank = ({ ...props }) => (
         <SingleCard {...props} blank {...cardAreaData} cardData={{}} />
     );
@@ -223,7 +221,11 @@ const applyScaling = (scaledWrapper, scaledContent, shrink) => {
         scaledWrapper.getBoundingClientRect()
     );
 
-    if (scaler < 1 && shrink) scaler = scaler * 0.99;
+    console.log(scaler, shrink, scaler === 1);
+
+    if (shrink && scaler === 1) {
+        scaler = scaler * 0.99;
+    }
 
     scaledContent.style.transform = `translate(-50%, -50%) scale(${scaler}, ${scaler})`;
 };

@@ -192,8 +192,6 @@ const CardControls = ({ cardId, iconMap, dispatch }) => {
         color: colorProps.value || colorProps.defaultValue,
     };
 
-    console.log('colorprops', colorProps);
-
     return (
         <>
             <Row>

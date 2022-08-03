@@ -51,7 +51,7 @@ export default ({ value, defaultValue, onChange, disabled }) => {
                     color={!value && defaultValue ? defaultValue : value}
                 ></PickerSwatch>
                 <PickerLabel>
-                    {value === '' ? 'Default' : value || 'ERROR'}
+                    {value === '' ? 'Using deck color' : value || 'ERROR'}
                 </PickerLabel>
             </PickerButton>
             <Dialog

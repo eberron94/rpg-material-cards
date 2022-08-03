@@ -1,7 +1,7 @@
 import { isValidCard } from '../../../../util/dataUtil';
 
 export const handleNewData =
-    (dispatch, sourceName, errorMessage) => (rawData) => {
+    (dispatch, sourceName, errorMessage, isDeckData) => (rawData) => {
         const printCountError = (count) => {
             if (count === 0)
                 alert(
@@ -14,7 +14,16 @@ export const handleNewData =
         };
         try {
             const data = JSON.parse(rawData);
-            console.log(data);
+
+            // handle deck object
+            if (typeof data === 'object' && Array.isArray(data.cards)) {
+                if (isDeckData && typeof data.options === 'object') {
+                    dispatch.deck.setOptions(data.options);
+                }
+                const tempValid = data.cards.filter(isValidCard);
+                dispatch.deck.addCardsFromData(tempValid);
+                return printCountError(tempValid.length);
+            }
 
             // handle array of cards
             if (Array.isArray(data)) {
@@ -27,13 +36,6 @@ export const handleNewData =
             if (typeof data === 'object' && isValidCard(data)) {
                 dispatch.deck.addCardsFromData(data);
                 return 1;
-            }
-
-            // handle full object
-            if (typeof data === 'object' && Array.isArray(data.cards)) {
-                const tempValid = data.cards.filter(isValidCard);
-                dispatch.deck.addCardsFromData(tempValid);
-                return printCountError(tempValid.length);
             }
         } catch (err) {
             console.error(err);

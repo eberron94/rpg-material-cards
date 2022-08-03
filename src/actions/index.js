@@ -41,12 +41,14 @@ export const createDispatch = (store) => ({
             store.dispatch(deck.actions.addCardsFromData(value)),
         resetOptions: (value) =>
             store.dispatch(deck.actions.resetOptions(value)),
+        setOptions: (value) => store.dispatch(deck.actions.setOptions(value)),
     },
     page: {
         setWidth: (value) => store.dispatch(page.actions.setWidth(value)),
         setHeight: (value) => store.dispatch(page.actions.setHeight(value)),
         setRows: (value) => store.dispatch(page.actions.setRows(value)),
         setCols: (value) => store.dispatch(page.actions.setCols(value)),
+        toggleShrink: () => store.dispatch(page.actions.toggleShrink()),
     },
 });
 

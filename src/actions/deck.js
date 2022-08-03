@@ -16,6 +16,9 @@ const types = {
 
     ADD_CARDS_FROM_DATA: 'deck.concat.cards',
     RESET_OPTIONS: 'deck.reset.options',
+    SET_OPTIONS: 'deck.set.options',
+
+    
 };
 
 const actions = {
@@ -52,6 +55,8 @@ const actions = {
     addCardsFromData: (value) => ({ type: types.ADD_CARDS_FROM_DATA, value }),
     deleteAll: () => ({ type: types.DELETE_ALL }),
     resetOptions: () => ({ type: types.RESET_OPTIONS }),
+    
+    setOptions: (value) => ({ type: types.SET_OPTIONS, value }),
 };
 
 export default { types, actions };

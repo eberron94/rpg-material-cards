@@ -1,7 +1,13 @@
 import { color } from '@mui/system';
 import { types } from '../actions';
 import { cape } from '../util/dataUtil';
-import { defaultOptions, duplicateCard, initCard, initialState } from './model';
+import {
+    defaultOptions,
+    duplicateCard,
+    duplicateOptions,
+    initCard,
+    initialState,
+} from './model';
 
 const findCardIndex = (deck, id) => deck.findIndex(({ _idv4 }) => _idv4 === id);
 
@@ -102,6 +108,10 @@ export const rootReducer = (state = initialState(), action) => {
             newState.options.page_columns = parseInt(value);
             return newState;
 
+        case types.page.TOGGLE_SHRINK:
+            newState.options.shrink = !Boolean(state.options.shrink);
+            return newState;
+
         case types.deck.SET_DEFAULT_TITLE_FONT:
             newState.options.default_title_font_size = value;
             return newState;
@@ -125,6 +135,9 @@ export const rootReducer = (state = initialState(), action) => {
 
         case types.deck.RESET_OPTIONS:
             newState.options = defaultOptions();
+            return newState;
+        case types.deck.SET_OPTIONS:
+            newState.options = duplicateOptions(value);
             return newState;
     }
 

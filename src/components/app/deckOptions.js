@@ -1,4 +1,12 @@
-import { InputAdornment, Typography } from '@mui/material';
+import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
+    Checkbox,
+    InputAdornment,
+    Typography,
+} from '@mui/material';
+import { saveAs } from 'file-saver';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { initialState } from '../../data/model';
@@ -11,31 +19,68 @@ import {
     LeftLabel,
     Row,
     SelectInput,
+    StyledAccordian,
+    StyledCheckbox,
     StyledTipButton as Button,
     SuperColumn,
     TextInput,
 } from './css';
-import { ColorPicker, ConfirmDialog, IconPicker, PasteLoad, FileLoad } from './modal';
+import {
+    ColorPicker,
+    ConfirmDialog,
+    FileLoad,
+    IconPicker,
+    PasteLoad,
+} from './modal';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default (props) => {
+    const [pageAccord, setPageAccord] = React.useState(false);
+    const [cardAccord, setCardAccord] = React.useState(true);
+    const [defaultAccord, setDefaultAccord] = React.useState(true);
+
     return (
         <AppContainer>
             <SuperColumn>
                 <DataManagement {...props} />
-                <Row>
-                    <Typography variant='h4'>Page Size Settings</Typography>
-                </Row>
-                <PaperSize {...props} />
+                <StyledAccordian
+                    expanded={pageAccord}
+                    onChange={() => setPageAccord(!pageAccord)}
+                    variant='outlined'
+                >
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography variant='h4'>Page Size Settings</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <PaperSize {...props} />
+                    </AccordionDetails>
+                </StyledAccordian>
 
-                <Row>
-                    <Typography variant='h4'>Card Size Settings</Typography>
-                </Row>
-                <CardSize {...props} />
+                <StyledAccordian
+                    expanded={cardAccord}
+                    onChange={() => setCardAccord(!cardAccord)}
+                    variant='outlined'
+                >
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography variant='h4'>Card Size Settings</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CardSize {...props} />
+                    </AccordionDetails>
+                </StyledAccordian>
 
-                <Row>
-                    <Typography variant='h4'>Default Values</Typography>
-                </Row>
-                <DefaultSettings {...props} />
+                <StyledAccordian
+                    expanded={defaultAccord}
+                    onChange={() => setDefaultAccord(!defaultAccord)}
+                    variant='outlined'
+                >
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography variant='h4'>Default Values</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <DefaultSettings {...props} />
+                    </AccordionDetails>
+                </StyledAccordian>
             </SuperColumn>
         </AppContainer>
     );
@@ -44,6 +89,7 @@ export default (props) => {
 const DataManagement = ({ dispatch }) => {
     const handleDeleteAll = () => dispatch.deck.deleteAll();
     const handleResetOptions = () => dispatch.deck.resetOptions();
+    const state = useSelector(selectors.state);
 
     const sampleProps = {
         title: 'Are you sure you want to add the sample cards?',
@@ -68,6 +114,18 @@ const DataManagement = ({ dispatch }) => {
         onConfirm: handleResetOptions,
     };
 
+    const saveProps = {
+        onClick: (e) => {
+            let fileName = 'rpg-material';
+
+            const file = new Blob([JSON.stringify(state, null, 4)], {
+                type: 'application/json;charset=utf-8',
+            });
+
+            saveAs(file, fileName);
+        },
+    };
+
     return (
         <Column>
             <Row>
@@ -79,9 +137,12 @@ const DataManagement = ({ dispatch }) => {
             </Row>
             <Row>
                 <PasteLoad dispatch={dispatch} />
-                <FileLoad dispatch={dispatch}/>
+                <FileLoad dispatch={dispatch} />
+                <FileLoad dispatch={dispatch} isDeck />
 
-                <Button variant='contained'>Save to File</Button>
+                <Button variant='contained' {...saveProps}>
+                    Save Deck
+                </Button>
             </Row>
             <Row>
                 <ConfirmDialog
@@ -89,7 +150,7 @@ const DataManagement = ({ dispatch }) => {
                     color='secondary'
                     {...deleteAllProps}
                 >
-                    Delete All
+                    Delete All Cards
                 </ConfirmDialog>
                 <ConfirmDialog
                     variant='contained'
@@ -341,6 +402,11 @@ const PaperSize = ({ dispatch }) => {
         onChange: (e) => dispatch.page.setCols(e.target.value),
     };
 
+    const shrinkProps = {
+        checked: useSelector(selectors.defaults.shrink),
+        onChange: () => dispatch.page.toggleShrink(),
+    };
+
     const makeDefaultSize = (label, width, height) => (
         <Button
             variant='outlined'
@@ -455,6 +521,17 @@ const PaperSize = ({ dispatch }) => {
                     >
                         Rotate Rows and Columns
                     </Button>
+                </Row>
+                <Row>
+                    <Label>Force Gap</Label>
+                    <InputContainer>
+                        <StyledCheckbox
+                            label={
+                                'Forces the pages to have space between cards'
+                            }
+                            {...shrinkProps}
+                        />
+                    </InputContainer>
                 </Row>
             </Column>
             <Column gap='4'>

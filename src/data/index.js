@@ -16,7 +16,7 @@ const loadState = () => {
         if (typeof window !== 'undefined') {
             const string = window.localStorage.getItem('cardData');
             if (string === null) return undefined;
-            console.log('loading...', string);
+            console.log('loading...');
             return JSON.parse(string);
         }
         return initialState();

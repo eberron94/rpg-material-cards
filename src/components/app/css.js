@@ -1,6 +1,9 @@
 import styled from '@emotion/styled';
 import {
+    Accordion,
     Button,
+    Checkbox,
+    FormControlLabel,
     MenuItem,
     NativeSelect,
     Select,
@@ -38,6 +41,7 @@ export const SuperColumn = styled.div`
 export const Column = styled(SuperColumn)`
     width: 100%;
     flex: ${(e) => e.flex || 1};
+    justify-content: ${(e) => e.align || 'center'};
 `;
 
 export const Row = styled(SuperRow)`
@@ -74,7 +78,6 @@ export const SelectInput = styled(Select)`
 
 export const CardPageButton = styled(Button)`
     flex: ${(e) => e.flex || 1};
-    
 `;
 
 export const ContentArea = styled.textarea`
@@ -169,3 +172,17 @@ export const StyledTipButton = styled(({ tooltip, ...props }) =>
         display: none;
     }
 `;
+
+export const StyledAccordian = styled(Accordion)`
+    width: 100%;
+    flex: 1;
+`;
+
+export const StyledCheckbox = styled(({ checked, onChange, ...props }) => {
+    return (
+        <FormControlLabel
+            control={<Checkbox checked={checked} onChange={onChange} />}
+            {...props}
+        />
+    );
+})``;

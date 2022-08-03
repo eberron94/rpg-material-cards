@@ -18,7 +18,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { isValidCard } from '../../../util/dataUtil';
 import { handleNewData } from './util/loadHelper';
 
-export default ({ dispatch }) => {
+export default ({ dispatch, deck }) => {
     const [open, setOpen] = React.useState(false);
     const [json, setJson] = React.useState('');
     const theme = useTheme();

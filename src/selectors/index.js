@@ -3,6 +3,7 @@ const cCard = (state) => {
 };
 
 export default {
+    state: (state) => state,
     cardData: cCard,
     card: {
         index: (state) =>
@@ -38,6 +39,8 @@ export default {
             String(state.options.page_width).includes('in') ? 'in' : 'mm',
         pageRow: (state) => state.options.page_rows,
         pageCol: (state) => state.options.page_columns,
+        shrink: (state) => state.options.shrink,
+        scale: (state) => state.options.scale,
     },
 };
 

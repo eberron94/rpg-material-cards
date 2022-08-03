@@ -20,7 +20,6 @@ const MainPage = () => {
 
     React.useEffect(() => {
         const loadedIcons = require('./iconMap.json');
-        console.log('loaded', loadedIcons);
         setIconMap(loadedIcons);
     }, []);
 
@@ -73,7 +72,6 @@ const PrintPage = () => {
 
     React.useEffect(() => {
         const loadedIcons = require('./iconMap.json');
-        console.log('loaded', loadedIcons);
         setIconMap(loadedIcons);
     }, []);
 

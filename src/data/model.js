@@ -3,6 +3,8 @@ import { cape, pad, uuidv4 } from '../util/dataUtil';
 export const initialState = () => {
     const card = initCard();
     return {
+        id: uuidv4(),
+        name: 'rpg-material',
         card: card._idv4,
         cards: [
             card,
@@ -58,6 +60,104 @@ export const defaultOptions = () => ({
     shrink: true,
 });
 
+export const duplicateOptions = ({
+    default_color,
+    color,
+    default_icon,
+    icon,
+    default_title_font_size,
+    title_font_size,
+    defaultTitleFontSize,
+    titleFontSize,
+    default_body_font_size,
+    body_font_size,
+    defaultBodyFontSize,
+    bodyFontSize,
+    page_width,
+    pageWidth,
+    page_height,
+    pageHeight,
+    page_rows,
+    pageRows,
+    rows,
+    page_columns,
+    pageColumns,
+    columns,
+    card_arrangement,
+    card_width,
+    cardWidth,
+    card_height,
+    cardHeight,
+    scale,
+    shrink,
+}) => {
+    const newOptions = defaultOptions();
+    newOptions.default_color = saneStr(
+        default_color || color,
+        newOptions.default_color
+    );
+    newOptions.default_icon = saneStr(
+        default_icon || icon,
+        newOptions.default_icon
+    );
+    newOptions.default_title_font_size = saneStr(
+        default_title_font_size ||
+            title_font_size ||
+            defaultTitleFontSize ||
+            titleFontSize,
+        newOptions.default_title_font_size
+    );
+    newOptions.default_body_font_size = saneStr(
+        default_body_font_size ||
+            body_font_size ||
+            defaultBodyFontSize ||
+            bodyFontSize,
+        newOptions.default_body_font_size
+    );
+
+    newOptions.page_width = saneStr(
+        page_width || pageWidth,
+        newOptions.page_width
+    );
+    newOptions.page_height = saneStr(
+        page_height || pageHeight,
+        newOptions.page_height
+    );
+
+    newOptions.page_rows = saneIntPositive(
+        page_rows || pageRows || rows,
+        newOptions.page_rows
+    );
+    newOptions.page_columns = saneIntPositive(
+        page_columns || pageColumns || columns,
+        newOptions.page_columns
+    );
+
+    newOptions.card_arrangement = saneStr(
+        card_arrangement,
+        newOptions.card_arrangement
+    );
+
+    newOptions.card_arrangement = saneStr(
+        card_arrangement,
+        newOptions.card_arrangement
+    );
+
+    newOptions.card_width = saneStr(
+        card_width || cardWidth,
+        newOptions.card_width
+    );
+    newOptions.card_height = saneStr(
+        card_height || cardHeight,
+        newOptions.card_height
+    );
+
+    newOptions.scale = saneIntPositive(scale, newOptions.scale);
+    newOptions.shrink = Boolean(shrink);
+
+    return newOptions;
+};
+
 const sanitize = ({
     count,
     color,
@@ -76,7 +176,7 @@ const sanitize = ({
     saneCard.count = saneIntPositive(count, 1);
     saneCard.color = saneStr(color, '');
     saneCard.title = saneStr(title, 'UNKNOWN TITLE');
-    saneCard.icon_front = saneStr(icon_front || icon, '');
+    saneCard.icon_front = saneStr(icon_front || icon || '', '');
     saneCard.icon_back = saneStr(icon_back, '');
     saneCard.qr = saneStr(qr, '');
     saneCard.title_font_size = saneIntPositive(title_font_size, 0);
@@ -99,10 +199,12 @@ const saneIntPositive = (input, fallback = 1) => {
 };
 
 const saneStr = (input, fallback) => {
+    if (!input || input === undefined) return fallback;
+
     if (typeof input === 'string') {
         if (input.length > 0) return input;
         else return fallback;
     }
 
-    return saneStr(String(input), fallback);
+    return saneStr(String(input || ''), fallback);
 };
