@@ -209,7 +209,7 @@ const calcScaler = (content, wrapper) => {
     const { width: cw, height: ch } = content;
     const { width: ww, height: wh } = wrapper;
     const scaler = Math.min(ww / cw, wh / ch, 1);
-    console.log('scaler', scaler, cw, ch, ww, wh);
+    // console.log('scaler', scaler, cw, ch, ww, wh);
     return scaler;
 };
 
@@ -221,9 +221,9 @@ const applyScaling = (scaledWrapper, scaledContent, shrink) => {
         scaledWrapper.getBoundingClientRect()
     );
 
-    console.log(scaler, shrink, scaler === 1);
+    console.log(scaler, shrink, scaler > 0.9);
 
-    if (shrink && scaler === 1) {
+    if (shrink && scaler > 0.9) {
         scaler = scaler * 0.99;
     }
 
