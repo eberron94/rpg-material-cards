@@ -1,39 +1,18 @@
-import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    Checkbox,
-    InputAdornment,
-    Typography,
-} from '@mui/material';
-import { saveAs } from 'file-saver';
+import { InputAdornment } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { initialState } from '../../../data/model';
 import selectors from '../../../selectors';
 import {
-    AppContainer,
     Column,
     InputContainer,
     Label,
     LeftLabel,
     Row,
     SelectInput,
-    StyledAccordian,
     StyledCheckbox,
     StyledTipButton as Button,
-    SuperColumn,
     TextInput,
 } from '../css';
-import {
-    ColorPicker,
-    ConfirmDialog,
-    FileLoad,
-    IconPicker,
-    PasteLoad,
-} from '../modal';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { jsonifyDeck, minifyDeck } from '../../../util/dataUtil';
 
 export default ({ dispatch }) => {
     const sizeProp = {
