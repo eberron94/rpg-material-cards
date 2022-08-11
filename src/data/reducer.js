@@ -4,6 +4,7 @@ import { cape } from '../util/dataUtil';
 import {
     defaultOptions,
     duplicateCard,
+    duplicateDeckState,
     duplicateOptions,
     initCard,
     initialState,
@@ -36,6 +37,13 @@ export const rootReducer = (state = initialState(), action) => {
                 }
             });
             return newState;
+
+        case types.deck.SET_DECK:
+            const deckState = duplicateDeckState(value);
+            if (deckState !== null) {
+                return deckState;
+            }
+            return state;
 
         case types.deck.CREATE:
             const newCard = initCard();

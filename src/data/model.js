@@ -1,4 +1,4 @@
-import { cape, pad, uuidv4 } from '../util/dataUtil';
+import { cape, isValidCard, pad, uuidv4 } from '../util/dataUtil';
 
 export const initialState = () => {
     const card = initCard();
@@ -20,6 +20,31 @@ export const initialState = () => {
         ],
         options: defaultOptions(),
     };
+};
+
+export const initDeck = (name = 'rpg-material', cards, options) => {
+    const saneCards = cape(cards).flatMap((c) => duplicateCard(c, ''));
+    const firstCardId =
+        saneCards.length > 0 && saneCards[0]._idv4 ? saneCards[0]._idv4 : null;
+    return {
+        id: uuidv4(),
+        name: name || 'rpg-material',
+        card: firstCardId,
+        cards: saneCards,
+        options: duplicateOptions(options),
+    };
+};
+
+export const duplicateDeckState = ({ name, cards, options }) => {
+    if (
+        typeof name === 'string' &&
+        Array.isArray(cards) &&
+        cards.every(isValidCard) &&
+        typeof options === 'object'
+    )
+        return initDeck(name, cards, options);
+
+    return null;
 };
 
 export const initCard = (id = uuidv4(), title = 'New card', icon = '') => ({

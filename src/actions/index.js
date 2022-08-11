@@ -42,6 +42,7 @@ export const createDispatch = (store) => ({
         resetOptions: (value) =>
             store.dispatch(deck.actions.resetOptions(value)),
         setOptions: (value) => store.dispatch(deck.actions.setOptions(value)),
+        setDeck: (value) => store.dispatch(deck.actions.setDeck(value)),
     },
     page: {
         setWidth: (value) => store.dispatch(page.actions.setWidth(value)),

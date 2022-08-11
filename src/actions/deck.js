@@ -18,7 +18,7 @@ const types = {
     RESET_OPTIONS: 'deck.reset.options',
     SET_OPTIONS: 'deck.set.options',
 
-    
+    SET_DECK: 'deck.set.all'
 };
 
 const actions = {
@@ -57,6 +57,7 @@ const actions = {
     resetOptions: () => ({ type: types.RESET_OPTIONS }),
     
     setOptions: (value) => ({ type: types.SET_OPTIONS, value }),
+    setDeck: (value) => ({ type: types.SET_DECK, value }),
 };
 
 export default { types, actions };
