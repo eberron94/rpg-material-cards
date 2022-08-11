@@ -160,7 +160,7 @@ export const CardPick = styled(({ cardStyle, ...props }) => (
 export const StyledTipButton = styled(({ tooltip, icon, ...props }) => {
     const ButtonElement = icon ? IconButton : Button;
     return tooltip ? (
-        <Tooltip title={tooltip} arrow>
+        <Tooltip title={tooltip} arrow enterDelay={500}>
             <ButtonElement {...props} />
         </Tooltip>
     ) : (

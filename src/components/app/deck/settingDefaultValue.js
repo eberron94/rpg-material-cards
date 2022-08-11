@@ -87,7 +87,7 @@ export default ({ dispatch, iconMap }) => {
                 <Row>
                     <Label>Deck Name</Label>
                     <InputContainer>
-                        <TextInput {...nameProps} />
+                        <TextInput variant='standard' {...nameProps} />
                     </InputContainer>
                 </Row>
                 <Row>

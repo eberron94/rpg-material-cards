@@ -125,7 +125,7 @@ export default ({ dispatch, iconMap }) => {
             <StyledTipButton
                 variant='contained'
                 onClick={handleClickOpen}
-                tooltip={`.`}
+                tooltip={`Manage your decks in storage. You can merge, delete, and clone decks.`}
             >
                 <AppsIcon />
                 Manage Decks

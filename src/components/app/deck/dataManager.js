@@ -22,7 +22,7 @@ export default ({ dispatch, iconMap }) => {
         tooltip: `Add sample cards to the deck.`,
         title: 'Are you sure you want to add the sample cards?',
         message:
-            'This will add all the sample cards to the current deck. You can delete them later.',
+            'This will add all the sample cards to the current deck. You can delete them later.\nThe sample cards explain how each content line works.',
         onConfirm: () => dispatch.deck.addCardsFromData(initialState().cards),
     };
 
@@ -45,7 +45,7 @@ export default ({ dispatch, iconMap }) => {
     return (
         <Column>
             <Row>
-                <StyledTipButton variant='outlined'>
+                <StyledTipButton variant='outlined' tooltip='Under construction' disabled>
                     <HelpIcon />
                     Help
                 </StyledTipButton>
