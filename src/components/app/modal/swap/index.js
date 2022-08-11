@@ -91,7 +91,11 @@ export default ({ dispatch, iconMap }) => {
             setDecks(decks.filter((d) => d._idv4 !== id));
         },
         onDownload: (id) => () => {
-            const tempDeck = decks.find((d) => d._idv4 === id);
+            let tempDeck = currentDeck;
+            if (id !== currentDeck._idv4) {
+                tempDeck = decks.find((d) => d._idv4 === id);
+            }
+
             if (tempDeck) {
                 let fileName = tempDeck.name || 'rpg-material';
                 const file = new Blob([jsonifyDeck(tempDeck, 4)], {

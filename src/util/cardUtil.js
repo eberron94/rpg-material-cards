@@ -1,8 +1,10 @@
 const getIconObject = (iconString, iconMap) => {
     const icon = { icon: 'ace', rotation: 0, color: '', path: '' };
 
+    if (!iconString) return icon;
+
     // Extract (icon id) (#rotation) and (%color) from icon string
-    const result = iconString.match(
+    const result = (iconString ? iconString : '').match(
         /([-a-z0-9]+)((?:#|%)[-a-z0-9]+)?((?:#|%)[-a-z0-9]+)?/
     );
 
@@ -80,13 +82,15 @@ const iconQR = ({ cardData, options }) => {
 const iconInline = ({ params, cardData, options, iconMap }) => {
     const iconString = params[0] || '';
     const size = params[1] || '6';
-    const align = params[2] || 'center';
+    const align = params[2] || '';
     const count = Number(params[3]) || 1;
     const rounded = Boolean(params[4]) ? 2 : 0;
     const color = colorFront({ cardData, options });
 
+    const iconObject = getIconObject(iconString, iconMap);
+
     return {
-        ...getIconObject(iconString, iconMap),
+        ...iconObject,
         size,
         align,
         color,

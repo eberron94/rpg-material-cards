@@ -50,11 +50,11 @@ export const duplicateDeckState = (
     return initDeck();
 };
 
-export const initCard = (title = 'rpg card', icon = '') => ({
+export const initCard = (title , icon = '') => ({
     _idv4: uuidv4(),
     count: 1,
     color: '',
-    title,
+    title: title ? String(title) : stringUtil.randomName(),
     icon_front: icon,
     icon_back: '',
     qr: '',
