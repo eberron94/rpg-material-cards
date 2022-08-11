@@ -32,10 +32,10 @@ const CardContentArray = (props) => {
     const groupedContents = groupTableContent(smartContents);
     const reactContents = groupedContents.map((arr, i) => {
         if (arr.length === 0) return null;
-        if (arr.length === 1)
-            return arr.map((value, i) => (
-                <CardContent key={i} {...value} {...props} />
-            ));
+        // if (arr.length === 1)
+        //     return arr.map((value, i) => (
+        //         <CardContent key={i} {...value} {...props} />
+        //     ));
 
         return makeTable(arr, i, props);
     });
@@ -94,6 +94,8 @@ const makeTable = (arr, parentIndex, props) => {
     if (tableprops.includes('paragraph;')) {
         rowStyle.marginTop = 5.33;
     }
+
+    console.log(arr)
 
     return (
         <Table key={parentIndex} className='card-table' style={tableStyle}>
