@@ -1,7 +1,8 @@
 import { cape, isValidCard, pad, uuidv4 } from '../util/dataUtil';
+import stringUtil from '../util/stringUtil';
 
 export const initialState = () => {
-    const card = initCard();
+    const card = initCard(stringUtil.randomName());
     return {
         _idv4: uuidv4(),
         name: 'rpg-material',
@@ -12,8 +13,7 @@ export const initialState = () => {
                 .fill(0)
                 .map((_, i) =>
                     initCard(
-                        null,
-                        'card ' + i,
+                        stringUtil.randomName(),
                         'abstract-' + pad(i + 1, 3, '0')
                     )
                 ),
@@ -50,8 +50,8 @@ export const duplicateDeckState = (
     return initDeck();
 };
 
-export const initCard = (id = uuidv4(), title = 'New card', icon = '') => ({
-    _idv4: id || uuidv4(),
+export const initCard = (title = 'rpg card', icon = '') => ({
+    _idv4: uuidv4(),
     count: 1,
     color: '',
     title,

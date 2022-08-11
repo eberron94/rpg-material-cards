@@ -5,7 +5,13 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DownloadIcon from '@mui/icons-material/Download';
 import EditIcon from '@mui/icons-material/Edit';
-import { Dialog, IconButton, useMediaQuery, useTheme } from '@mui/material';
+import {
+    Dialog,
+    IconButton,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
 import { saveAs } from 'file-saver';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -45,7 +51,6 @@ export default ({ dispatch, iconMap }) => {
     };
 
     const handleClose = () => {
-        setDecks([]);
         setOpen(false);
     };
 
@@ -106,8 +111,7 @@ export default ({ dispatch, iconMap }) => {
     };
 
     React.useEffect(() => {
-        if (Array.isArray(decks) && decks.length > 0)
-            saveStorage('deckList', decks);
+        if (Array.isArray(decks) && open) saveStorage('deckList', decks);
     }, [decks]);
 
     const display = decks
@@ -211,7 +215,9 @@ const DeckDisplayCard = ({
                     </Row>
                 ) : (
                     <Row>
-                        <DeckInfo>Your current deck</DeckInfo>
+                        <DeckInfo>
+                            <Typography>Your current deck</Typography>
+                        </DeckInfo>
                     </Row>
                 )}
                 <Row>

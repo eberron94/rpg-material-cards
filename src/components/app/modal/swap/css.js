@@ -51,10 +51,12 @@ export const DeckInfo = styled.div`
 `;
 
 export const DeckControlColumn = styled(Column)`
+    label: deck-control-column;
     background-color: white;
     border-radius: 8px;
     color: black;
     text-align: center;
+    min-height: 100px;
 `;
 
 export const DeckIcon = styled.img`
