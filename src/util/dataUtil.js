@@ -1,4 +1,4 @@
-import { isInteger } from 'lodash';
+import { isInteger, sample } from 'lodash';
 
 export const uuidv4 = () => {
     return 'xxx4xxx'.replace(/[xy]/g, function (c) {
@@ -66,3 +66,5 @@ export const loadStorage = (key) => {
 
     return null;
 };
+
+

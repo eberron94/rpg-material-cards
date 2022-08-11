@@ -1,4 +1,5 @@
 import AddIcon from '@mui/icons-material/Add';
+import AppsIcon from '@mui/icons-material/Apps';
 import CallMergeIcon from '@mui/icons-material/CallMerge';
 import CloseIcon from '@mui/icons-material/Close';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -30,7 +31,6 @@ import {
     DeckCard,
     DeckControlColumn,
     DeckDialogContent,
-    DeckDivider,
     DeckIcon,
     DeckInfo,
 } from './css';
@@ -127,6 +127,7 @@ export default ({ dispatch, iconMap }) => {
                 onClick={handleClickOpen}
                 tooltip={`.`}
             >
+                <AppsIcon />
                 Manage Decks
             </StyledTipButton>
             <Dialog
@@ -148,7 +149,7 @@ export default ({ dispatch, iconMap }) => {
                         current
                         {...deckDisplayProps}
                     />
-                    <DeckDivider />
+                    {/* <DeckDivider /> */}
                     {display}
                 </DeckDialogContent>
                 <StyledDialogActions>
@@ -216,7 +217,7 @@ const DeckDisplayCard = ({
                 ) : (
                     <Row>
                         <DeckInfo>
-                            <Typography>Your current deck</Typography>
+                            <Typography>Current deck</Typography>
                         </DeckInfo>
                     </Row>
                 )}

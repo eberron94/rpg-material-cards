@@ -1,3 +1,4 @@
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import StyleIcon from '@mui/icons-material/Style';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { DropzoneDialog } from 'material-ui-dropzone';
@@ -44,6 +45,7 @@ export default ({ dispatch }) => {
             onClick={handleClickOpen}
             tooltip={`Add more cards by loading json files.`}
         >
+            <FileUploadIcon />
             Upload cards
         </StyledTipButton>
     );

@@ -1,4 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 import { Dialog, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { StyledTipButton } from '../css';
@@ -42,6 +43,7 @@ export default ({ dispatch, deck }) => {
                 onClick={handleClickOpen}
                 tooltip={`Add more cards by pasting in a json block.`}
             >
+                <ContentPasteIcon />
                 Paste Cards
             </StyledTipButton>
             <Dialog

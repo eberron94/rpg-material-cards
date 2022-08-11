@@ -1,16 +1,25 @@
-import { saveAs } from 'file-saver';
+import ClearAllIcon from '@mui/icons-material/ClearAll';
+import DeleteIcon from '@mui/icons-material/Delete';
+import HelpIcon from '@mui/icons-material/Help';
+import InfoIcon from '@mui/icons-material/Info';
+import PrintIcon from '@mui/icons-material/Print';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { initialState } from '../../../data/model';
 import selectors from '../../../selectors';
-import { jsonifyDeck } from '../../../util/dataUtil';
-import { Column, Row, StyledTipButton as Button } from '../css';
+import {
+    Column,
+    Row,
+    StyledTipButton as Button,
+    StyledTipButton,
+} from '../css';
 import { CardFileLoad, ConfirmDialog, PasteCardLoad, SwapDeck } from '../modal';
 
 export default ({ dispatch, iconMap }) => {
     const state = useSelector(selectors.state);
 
     const sampleProps = {
+        tooltip: `Add sample cards to the deck.`,
         title: 'Are you sure you want to add the sample cards?',
         message:
             'This will add all the sample cards to the current deck. You can delete them later.',
@@ -33,34 +42,21 @@ export default ({ dispatch, iconMap }) => {
         onConfirm: () => dispatch.deck.resetOptions(),
     };
 
-    const saveProps = {
-        onClick: (e) => {
-            let fileName = 'rpg-material';
-
-            const file = new Blob([jsonifyDeck(state, 4)], {
-                type: 'application/json;charset=utf-8',
-            });
-
-            saveAs(file, fileName);
-        },
-    };
-
     return (
         <Column>
             <Row>
-                <Button variant='outlined'>Open Help</Button>
+                <StyledTipButton variant='outlined'>
+                    <HelpIcon />
+                    Help
+                </StyledTipButton>
                 <ConfirmDialog variant='outlined' {...sampleProps}>
-                    Load Sample
+                    <InfoIcon /> Sample
                 </ConfirmDialog>
                 <SwapDeck dispatch={dispatch} iconMap={iconMap} />
             </Row>
             <Row>
                 <PasteCardLoad dispatch={dispatch} />
                 <CardFileLoad dispatch={dispatch} />
-
-                <Button variant='contained' {...saveProps}>
-                    Save Deck
-                </Button>
             </Row>
             <Row>
                 <ConfirmDialog
@@ -68,6 +64,7 @@ export default ({ dispatch, iconMap }) => {
                     color='secondary'
                     {...deleteAllProps}
                 >
+                    <DeleteIcon />
                     Delete All Cards
                 </ConfirmDialog>
                 <ConfirmDialog
@@ -75,11 +72,13 @@ export default ({ dispatch, iconMap }) => {
                     color='secondary'
                     {...resetOptionProps}
                 >
-                    Reset Default and Printing
+                    <ClearAllIcon />
+                    Clear Settings
                 </ConfirmDialog>
             </Row>
             <Button variant='contained' href='/print'>
-                Generate Pages to Print
+                <PrintIcon />
+                Generate Pages
             </Button>
         </Column>
     );

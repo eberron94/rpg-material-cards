@@ -16,16 +16,17 @@ export default (props) => {
         <AppContainer>
             <SuperColumn>
                 <DataManager {...props} />
+
                 <StyledAccordian
-                    expanded={pageAccord}
-                    onChange={() => setPageAccord(!pageAccord)}
+                    expanded={defaultAccord}
+                    onChange={() => setDefaultAccord(!defaultAccord)}
                     variant='outlined'
                 >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography variant='h4'>Page Size Settings</Typography>
+                        <Typography variant='h4'>Deck Values</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <SettingPageSize {...props} />
+                        <SettingDefaultValue {...props} />
                     </AccordionDetails>
                 </StyledAccordian>
 
@@ -43,15 +44,15 @@ export default (props) => {
                 </StyledAccordian>
 
                 <StyledAccordian
-                    expanded={defaultAccord}
-                    onChange={() => setDefaultAccord(!defaultAccord)}
+                    expanded={pageAccord}
+                    onChange={() => setPageAccord(!pageAccord)}
                     variant='outlined'
                 >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography variant='h4'>Deck Values</Typography>
+                        <Typography variant='h4'>Page Size Settings</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <SettingDefaultValue {...props} />
+                        <SettingPageSize {...props} />
                     </AccordionDetails>
                 </StyledAccordian>
             </SuperColumn>

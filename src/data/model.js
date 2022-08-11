@@ -22,13 +22,13 @@ export const initialState = () => {
     };
 };
 
-export const initDeck = (name = 'rpg-material', cards = [], options = {}) => {
+export const initDeck = (name, cards = [], options = {}) => {
     const saneCards = cape(cards).flatMap((c) => duplicateCard(c, ''));
     const firstCardId =
         saneCards.length > 0 && saneCards[0]._idv4 ? saneCards[0]._idv4 : null;
     return {
         _idv4: uuidv4(),
-        name: name || 'rpg-material',
+        name: name ? String(name) : stringUtil.randomName(),
         card: firstCardId,
         cards: saneCards,
         options: duplicateOptions(options),
