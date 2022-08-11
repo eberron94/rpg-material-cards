@@ -7,7 +7,8 @@ export const StyledDialogTitle = styled(DialogTitle)`
 `;
 
 export const StyledDialogContent = styled(DialogContent)`
-    // overflow: hidden;
+    overflow: hidden;
+    overflow-y: auto !important;
 `;
 
 export const StyledDialogActions = styled(DialogActions)`
