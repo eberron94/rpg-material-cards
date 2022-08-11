@@ -1,12 +1,11 @@
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import StyleIcon from '@mui/icons-material/Style';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { DropzoneDialog } from 'material-ui-dropzone';
 import React from 'react';
 import { StyledTipButton } from '../css';
-import { handleNewData } from './util/loadHelper';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
 
-export default ({  onLoad }) => {
+export default ({ onLoad }) => {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));

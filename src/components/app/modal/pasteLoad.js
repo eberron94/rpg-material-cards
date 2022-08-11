@@ -1,11 +1,5 @@
-import {
-    Dialog,
-    DialogContent,
-    IconButton,
-    TextField,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { Dialog, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { StyledTipButton } from '../css';
 import {
@@ -14,8 +8,6 @@ import {
     StyledDialogContent,
     StyledDialogTitle,
 } from './css';
-import CloseIcon from '@mui/icons-material/Close';
-import { isValidCard } from '../../../util/dataUtil';
 import { handleNewData } from './util/loadHelper';
 
 export default ({ dispatch, deck }) => {

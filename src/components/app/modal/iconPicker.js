@@ -1,3 +1,4 @@
+import CloseIcon from '@mui/icons-material/Close';
 import {
     Button,
     ButtonGroup,
@@ -16,7 +17,6 @@ import {
     IconGridImage,
     IconGridItem,
     IconGridLabel,
-    StyledDialogContent,
     IconSearchField,
     PageSizeSelect,
     PickerButton,
@@ -24,9 +24,9 @@ import {
     PickerSwatch,
     RotationControls,
     StyledDialogActions,
+    StyledDialogContent,
     StyledDialogTitle,
 } from './css';
-import CloseIcon from '@mui/icons-material/Close';
 
 export default ({
     value: rawValue = 'plain-square',

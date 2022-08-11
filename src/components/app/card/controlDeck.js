@@ -49,7 +49,9 @@ export default ({ cardId, iconMap, dispatch }) => {
                             />
                         ))}
                     </SelectInput>
-                    <Row><Typography>{`${index + 1}/${deck.length}`}</Typography></Row>
+                    <Row>
+                        <Typography>{`${index + 1}/${deck.length}`}</Typography>
+                    </Row>
                     <OrderCards
                         iconMap={iconMap}
                         deck={deck}

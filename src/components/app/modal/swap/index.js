@@ -1,32 +1,25 @@
-import {
-    Dialog,
-    DialogContent,
-    Divider,
-    IconButton,
-    TextField,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
-import React from 'react';
-import { Column, Row, StyledTipButton } from '../../css';
-import {
-    FullTextArea,
-    StyledDialogActions,
-    StyledDialogContent,
-    StyledDialogTitle,
-} from '../css';
+import AddIcon from '@mui/icons-material/Add';
+import CallMergeIcon from '@mui/icons-material/CallMerge';
 import CloseIcon from '@mui/icons-material/Close';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DownloadIcon from '@mui/icons-material/Download';
+import EditIcon from '@mui/icons-material/Edit';
+import { Dialog, IconButton, useMediaQuery, useTheme } from '@mui/material';
+import { saveAs } from 'file-saver';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { ConfirmDialog, DeckFileLoad } from '..';
+import { duplicateDeckState, initDeck } from '../../../../data/model';
+import selectors from '../../../../selectors';
 import {
-    isValidCard,
     jsonifyDeck,
     loadStorage,
     minifyDeck,
     saveStorage,
 } from '../../../../util/dataUtil';
-import { handleNewData } from '../util/loadHelper';
-import { duplicateDeckState, initDeck } from '../../../../data/model';
-import selectors from '../../../../selectors';
-import { useSelector } from 'react-redux';
+import { Row, StyledTipButton } from '../../css';
+import { StyledDialogActions, StyledDialogTitle } from '../css';
 import {
     DeckCard,
     DeckControlColumn,
@@ -35,15 +28,6 @@ import {
     DeckIcon,
     DeckInfo,
 } from './css';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import AddIcon from '@mui/icons-material/Add';
-import { ConfirmDialog, DeckFileLoad, FileLoad } from '..';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
-import DownloadIcon from '@mui/icons-material/Download';
-import { saveAs } from 'file-saver';
-import CallMergeIcon from '@mui/icons-material/CallMerge';
 
 export default ({ dispatch, iconMap }) => {
     const [open, setOpen] = React.useState(false);

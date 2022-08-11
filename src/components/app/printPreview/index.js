@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import selectors from '../../../selectors';
 import { CardBack, CardEmpty, CardFront } from '../../card';
-import { StyledTipButton } from '../css';
 
 import { Page, PrintCardArea, PrintCardWrapper, PrintRow } from './css';
 

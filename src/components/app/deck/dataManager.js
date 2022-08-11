@@ -5,7 +5,7 @@ import { initialState } from '../../../data/model';
 import selectors from '../../../selectors';
 import { jsonifyDeck } from '../../../util/dataUtil';
 import { Column, Row, StyledTipButton as Button } from '../css';
-import { ConfirmDialog, CardFileLoad, PasteCardLoad, SwapDeck } from '../modal';
+import { CardFileLoad, ConfirmDialog, PasteCardLoad, SwapDeck } from '../modal';
 
 export default ({ dispatch, iconMap }) => {
     const state = useSelector(selectors.state);

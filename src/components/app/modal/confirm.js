@@ -1,22 +1,8 @@
 import CloseIcon from '@mui/icons-material/Close';
-import {
-    Dialog,
-    DialogContent,
-    IconButton,
-    useMediaQuery,
-    useTheme,
-} from '@mui/material';
-import * as color from '@mui/material/colors';
+import { Dialog, IconButton, useMediaQuery, useTheme } from '@mui/material';
 import React from 'react';
 import { StyledTipButton } from '../css';
 import {
-    ColorGridContainer,
-    ColorGridItem,
-    ColorGridLabel,
-    ColorGridRow,
-    PickerButton,
-    PickerLabel,
-    PickerSwatch,
     StyledDialogActions,
     StyledDialogContent,
     StyledDialogTitle,
