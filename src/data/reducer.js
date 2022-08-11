@@ -19,6 +19,8 @@ export const rootReducer = (state = initialState(), action) => {
 
     //Deep Copy
     const newState = {
+        _idv4: state._idv4,
+        name: state.name,
         card: state.card,
         cards: [...state.cards],
         options: { ...state.options },
@@ -44,6 +46,10 @@ export const rootReducer = (state = initialState(), action) => {
                 return deckState;
             }
             return state;
+
+        case types.deck.SET_NAME:
+            newState.name = String(value);
+            return newState;
 
         case types.deck.CREATE:
             const newCard = initCard();

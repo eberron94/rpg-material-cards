@@ -41,6 +41,7 @@ export default {
         pageCol: (state) => state.options.page_columns,
         shrink: (state) => state.options.shrink,
         scale: (state) => state.options.scale,
+        name: (state) => state.name,
     },
 };
 

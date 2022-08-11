@@ -48,7 +48,7 @@ export default (props) => {
                     variant='outlined'
                 >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography variant='h4'>Default Values</Typography>
+                        <Typography variant='h4'>Deck Values</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <SettingDefaultValue {...props} />

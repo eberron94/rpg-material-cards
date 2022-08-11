@@ -22,10 +22,11 @@ export const isValidCard = ({ title, contents }) =>
     Array.isArray(contents) && //contents must be an array
     contents.filter((e) => typeof e !== 'string').length === 0; //contents must only contain strings
 
-export const minifyDeck = ({ name, cards, options }) => ({
+export const minifyDeck = ({ _idv4, name, cards, options }) => ({
+    _idv4,
     name,
-    options,
     cards: cards.map(({ _idv4, ...card }) => card),
+    options,
 });
 
 export const jsonifyDeck = (deck, spacer) => {
@@ -35,4 +36,33 @@ export const jsonifyDeck = (deck, spacer) => {
     }
 
     return JSON.stringify(miniDeck);
+};
+
+export const saveStorage = (key, dataString) => {
+    try {
+        if (typeof window !== 'undefined') {
+            window.localStorage.setItem(
+                key,
+                typeof dataString === 'string'
+                    ? dataString
+                    : JSON.stringify(dataString)
+            );
+            console.log('saving to local storage', key);
+        }
+    } catch (err) {}
+};
+
+export const loadStorage = (key) => {
+    try {
+        if (typeof window !== 'undefined') {
+            const string = window.localStorage.getItem(key);
+            if (string === null) return undefined;
+            console.log('loading from local storage', key);
+            return JSON.parse(string);
+        }
+    } catch (err) {
+        return null;
+    }
+
+    return null;
 };

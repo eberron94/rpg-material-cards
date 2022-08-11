@@ -5,7 +5,7 @@ import React from 'react';
 import { StyledTipButton } from '../css';
 import { handleNewData } from './util/loadHelper';
 
-export default ({ dispatch, isDeck }) => {
+export default ({ dispatch }) => {
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
@@ -28,8 +28,7 @@ export default ({ dispatch, isDeck }) => {
                             handleNewData(
                                 dispatch,
                                 newFile?.name,
-                                `Could not load file or failed to parse its contents. Make sure the file is a proper json file. It should contain a single card object; an array of card objects; or an object with a "cards" field, which has an array of card objects. A card object must contain a "title", which is a string, and a "contents" array, which only contains strings.`,
-                                isDeck
+                                `Could not load file or failed to parse its contents. Make sure the file is a proper json file. It should contain a single card object; an array of card objects; or an object with a "cards" field, which has an array of card objects. A card object must contain a "title", which is a string, and a "contents" array, which only contains strings.`
                             )
                         )
                 )
@@ -49,18 +48,6 @@ export default ({ dispatch, isDeck }) => {
         </StyledTipButton>
     );
 
-    if (isDeck) {
-        openButton = (
-            <StyledTipButton
-                variant='contained'
-                onClick={handleClickOpen}
-                tooltip={`Add a deck from a json file.`}
-            >
-                Upload deck
-            </StyledTipButton>
-        );
-    }
-
     return (
         <>
             {openButton}
@@ -68,7 +55,7 @@ export default ({ dispatch, isDeck }) => {
                 fullScreen={fullScreen}
                 maxWidth={'lg'}
                 fullWidth
-                filesLimit={isDeck ? 1 : 3}
+                filesLimit={3}
                 acceptedFiles={['application/json']}
                 cancelButtonText={'cancel'}
                 submitButtonText={'submit'}

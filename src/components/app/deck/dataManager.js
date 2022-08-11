@@ -5,9 +5,9 @@ import { initialState } from '../../../data/model';
 import selectors from '../../../selectors';
 import { jsonifyDeck } from '../../../util/dataUtil';
 import { Column, Row, StyledTipButton as Button } from '../css';
-import { ConfirmDialog, FileLoad, PasteLoad } from '../modal';
+import { ConfirmDialog, CardFileLoad, PasteCardLoad, SwapDeck } from '../modal';
 
-export default ({ dispatch }) => {
+export default ({ dispatch, iconMap }) => {
     const state = useSelector(selectors.state);
 
     const sampleProps = {
@@ -52,12 +52,11 @@ export default ({ dispatch }) => {
                 <ConfirmDialog variant='outlined' {...sampleProps}>
                     Load Sample
                 </ConfirmDialog>
-                <Button variant='contained'>Switch Deck</Button>
+                <SwapDeck dispatch={dispatch} iconMap={iconMap} />
             </Row>
             <Row>
-                <PasteLoad dispatch={dispatch} />
-                <FileLoad dispatch={dispatch} />
-                <FileLoad dispatch={dispatch} isDeck />
+                <PasteCardLoad dispatch={dispatch} />
+                <CardFileLoad dispatch={dispatch} />
 
                 <Button variant='contained' {...saveProps}>
                     Save Deck

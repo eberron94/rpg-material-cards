@@ -18,7 +18,8 @@ const types = {
     RESET_OPTIONS: 'deck.reset.options',
     SET_OPTIONS: 'deck.set.options',
 
-    SET_DECK: 'deck.set.all'
+    SET_DECK: 'deck.set.all',
+    SET_NAME: 'deck.set.name',
 };
 
 const actions = {
@@ -55,9 +56,10 @@ const actions = {
     addCardsFromData: (value) => ({ type: types.ADD_CARDS_FROM_DATA, value }),
     deleteAll: () => ({ type: types.DELETE_ALL }),
     resetOptions: () => ({ type: types.RESET_OPTIONS }),
-    
+
     setOptions: (value) => ({ type: types.SET_OPTIONS, value }),
     setDeck: (value) => ({ type: types.SET_DECK, value }),
+    setName: (value) => ({ type: types.SET_NAME, value }),
 };
 
 export default { types, actions };

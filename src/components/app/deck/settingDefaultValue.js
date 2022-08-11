@@ -1,7 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import selectors from '../../../selectors';
-import { Column, InputContainer, Label, Row, SelectInput } from '../css';
+import {
+    Column,
+    InputContainer,
+    Label,
+    Row,
+    SelectInput,
+    TextInput,
+} from '../css';
 import { ColorPicker, IconPicker } from '../modal';
 
 export default ({ dispatch, iconMap }) => {
@@ -26,6 +33,11 @@ export default ({ dispatch, iconMap }) => {
         defaultMessage: 'system default',
         defaultIcon: 'ace',
         color: colorProps.value,
+    };
+
+    const nameProps = {
+        value: useSelector(selectors.defaults.name) || '',
+        onChange: (e) => dispatch.deck.setName(e.target.value),
     };
 
     return (
@@ -73,14 +85,20 @@ export default ({ dispatch, iconMap }) => {
             </Column>
             <Column>
                 <Row>
-                    <Label>Default Icon</Label>
+                    <Label>Deck Name</Label>
+                    <InputContainer>
+                        <TextInput {...nameProps} />
+                    </InputContainer>
+                </Row>
+                <Row>
+                    <Label>Deck Icon</Label>
                     <InputContainer>
                         <IconPicker {...iconProps} iconMap={iconMap} />
                     </InputContainer>
                 </Row>
 
                 <Row>
-                    <Label>Default Color</Label>
+                    <Label>Deck Color</Label>
                     <InputContainer>
                         <ColorPicker {...colorProps} />
                     </InputContainer>

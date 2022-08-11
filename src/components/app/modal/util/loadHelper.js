@@ -1,7 +1,7 @@
 import { isValidCard } from '../../../../util/dataUtil';
 
 export const handleNewData =
-    (dispatch, sourceName, errorMessage, isDeckData) => (rawData) => {
+    (dispatch, sourceName, errorMessage) => (rawData) => {
         const printCountError = (count) => {
             if (count === 0)
                 alert(
@@ -17,9 +17,6 @@ export const handleNewData =
 
             // handle deck object
             if (typeof data === 'object' && Array.isArray(data.cards)) {
-                if (isDeckData && typeof data.options === 'object') {
-                    dispatch.deck.setOptions(data.options);
-                }
                 const tempValid = data.cards.filter(isValidCard);
                 dispatch.deck.addCardsFromData(tempValid);
                 return printCountError(tempValid.length);

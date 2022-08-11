@@ -3,7 +3,7 @@ import { cape, isValidCard, pad, uuidv4 } from '../util/dataUtil';
 export const initialState = () => {
     const card = initCard();
     return {
-        id: uuidv4(),
+        _idv4: uuidv4(),
         name: 'rpg-material',
         card: card._idv4,
         cards: [
@@ -22,12 +22,12 @@ export const initialState = () => {
     };
 };
 
-export const initDeck = (name = 'rpg-material', cards, options) => {
+export const initDeck = (name = 'rpg-material', cards = [], options = {}) => {
     const saneCards = cape(cards).flatMap((c) => duplicateCard(c, ''));
     const firstCardId =
         saneCards.length > 0 && saneCards[0]._idv4 ? saneCards[0]._idv4 : null;
     return {
-        id: uuidv4(),
+        _idv4: uuidv4(),
         name: name || 'rpg-material',
         card: firstCardId,
         cards: saneCards,
@@ -35,16 +35,19 @@ export const initDeck = (name = 'rpg-material', cards, options) => {
     };
 };
 
-export const duplicateDeckState = ({ name, cards, options }) => {
+export const duplicateDeckState = (
+    { name, cards, options } = {},
+    titleConcat = ''
+) => {
     if (
         typeof name === 'string' &&
         Array.isArray(cards) &&
         cards.every(isValidCard) &&
         typeof options === 'object'
     )
-        return initDeck(name, cards, options);
+        return initDeck(name + titleConcat, cards, options);
 
-    return null;
+    return initDeck();
 };
 
 export const initCard = (id = uuidv4(), title = 'New card', icon = '') => ({

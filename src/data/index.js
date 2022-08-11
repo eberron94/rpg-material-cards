@@ -1,25 +1,20 @@
 import { throttle } from 'lodash';
 import { createStore } from 'redux';
-import { initialState } from './model';
+import { jsonifyDeck, loadStorage, saveStorage } from '../util/dataUtil';
+import { duplicateDeckState, initialState } from './model';
 import { rootReducer } from './reducer';
 
 const saveState = (state) => {
     try {
-        if (typeof window !== 'undefined') {
-            window.localStorage.setItem('cardData', JSON.stringify(state));
-        }
+        saveStorage('cardData', jsonifyDeck(state));
     } catch (err) {}
 };
 
 const loadState = () => {
     try {
-        if (typeof window !== 'undefined') {
-            const string = window.localStorage.getItem('cardData');
-            if (string === null) return undefined;
-            console.log('loading...');
-            return JSON.parse(string);
-        }
-        return initialState();
+        const loadedState = loadStorage('cardData');
+        if (!loadedState) return initialState();
+        return duplicateDeckState(loadedState);
     } catch (err) {
         return undefined;
     }
@@ -33,7 +28,6 @@ store.subscribe(() => {
 });
 store.subscribe(
     throttle(() => {
-        console.log('saving to local storage');
         saveState(store.getState());
     }, 1000)
 );

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import {
     Accordion,
     Button,
+    IconButton,
     Checkbox,
     FormControlLabel,
     MenuItem,
@@ -156,15 +157,16 @@ export const CardPick = styled(({ cardStyle, ...props }) => (
     }
 `;
 
-export const StyledTipButton = styled(({ tooltip, ...props }) =>
-    tooltip ? (
+export const StyledTipButton = styled(({ tooltip, icon, ...props }) => {
+    const ButtonElement = icon ? IconButton : Button;
+    return tooltip ? (
         <Tooltip title={tooltip} arrow>
-            <Button {...props} />
+            <ButtonElement {...props} />
         </Tooltip>
     ) : (
-        <Button {...props} />
-    )
-)`
+        <ButtonElement {...props} />
+    );
+})`
     width: 100%;
     flex: 1;
 
