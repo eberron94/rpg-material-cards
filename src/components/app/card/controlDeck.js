@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import selectors from '../../../selectors';
@@ -44,9 +45,11 @@ export default ({ cardId, iconMap, dispatch }) => {
                                 cardData={cc}
                                 options={options}
                                 value={i}
+                                nthLabel={i + 1 + '/' + deck.length}
                             />
                         ))}
                     </SelectInput>
+                    <Row><Typography>{`${index + 1}/${deck.length}`}</Typography></Row>
                     <OrderCards
                         iconMap={iconMap}
                         deck={deck}
