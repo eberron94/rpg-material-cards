@@ -36,5 +36,9 @@ export default (params) => {
 const Score = ({ value: v = 10, ...props }) => {
     const value = Number(v) || 10;
     const mod = Math.floor((value - 10) / 2);
-    return <D20Score {...props}>{`${value} (${mod})`}</D20Score>;
+    return (
+        <D20Score {...props}>{`${value} (${
+            mod >= 0 ? '+' + mod : mod
+        })`}</D20Score>
+    );
 };
