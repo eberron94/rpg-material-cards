@@ -95,8 +95,6 @@ const makeTable = (arr, parentIndex, props) => {
         rowStyle.marginTop = 5.33;
     }
 
-    console.log(arr)
-
     return (
         <Table key={parentIndex} className='card-table' style={tableStyle}>
             {arr

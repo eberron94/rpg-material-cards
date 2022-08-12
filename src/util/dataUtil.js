@@ -47,7 +47,7 @@ export const saveStorage = (key, dataString) => {
                     ? dataString
                     : JSON.stringify(dataString)
             );
-            console.log('saving to local storage', key);
+            // console.log('saving to local storage', key);
         }
     } catch (err) {}
 };
@@ -57,7 +57,7 @@ export const loadStorage = (key) => {
         if (typeof window !== 'undefined') {
             const string = window.localStorage.getItem(key);
             if (string === null) return undefined;
-            console.log('loading from local storage', key);
+            // console.log('loading from local storage', key);
             return JSON.parse(string);
         }
     } catch (err) {

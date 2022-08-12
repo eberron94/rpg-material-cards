@@ -21,11 +21,11 @@ const loadState = () => {
 };
 
 export const store = createStore(rootReducer, loadState());
-store.subscribe(() => {
-    const state = store.getState();
-    const currentCard = state.cards.find(({ _idv4 }) => _idv4 === state.card);
-    console.log('current state', currentCard, state.options, state);
-});
+// store.subscribe(() => {
+//     const state = store.getState();
+//     const currentCard = state.cards.find(({ _idv4 }) => _idv4 === state.card);
+//     console.log('current state', currentCard, state.options, state);
+// });
 store.subscribe(
     throttle(() => {
         saveState(store.getState());
