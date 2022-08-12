@@ -36,9 +36,9 @@ const getIconObject = (iconString, iconMap) => {
 };
 
 const splitParams = (value) => {
-    return String(value)
+    return String(value).replace(/(\\\|)/g, '~#~')
         .split('|')
-        .map((str) => str.trim());
+        .map((str) => str.replace(/~#~/g,'|').trim());
 };
 
 const colorFront = ({ cardData, options }) => {

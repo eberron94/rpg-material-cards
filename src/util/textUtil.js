@@ -12,30 +12,47 @@ const stylize = (str) => {
     let count = 0;
 
     // Add bold and italics to ***string***
-    str = rr(str, /\*\*\*([^\*]+)\*\*\*/g, (match, i) => (
+    str = rr(str, /[_*]{3}([^\*]+)[_*]{3}/g, (match, i) => (
         <strong key={match + count++}>
             <em>{match}</em>
         </strong>
     ));
 
     // Add bold to **string**
-    str = rr(str, /\*\*([^\*]+)\*\*/g, (match, i) => (
+    str = rr(str, /[_*]{2}([^\*]+)[_*]{2}/g, (match, i) => (
         <strong key={match + count++}>{match}</strong>
     ));
 
     // Add italics to *string*
-    str = rr(str, /\*([^\*]+)\*/g, (match, i) => (
+    str = rr(str, /[_*]{1}([^\*]+)[_*]{1}/g, (match, i) => (
         <em key={match + count++}>{match}</em>
+    ));
+
+    // Add strike and underline to ~~~string~~~
+    str = rr(str, /[~]{3}([^\*]+)[~]{3}/g, (match, i) => (
+        <s key={match + count++}>
+            <u>{match}</u>
+        </s>
+    ));
+
+    // Add underline to ~~string~~
+    str = rr(str, /[~]{2}([^\*]+)[~]{2}/g, (match, i) => (
+        <s key={match + count++}>{match}</s>
+    ));
+
+    // Add underline to ~string~
+    str = rr(str, /[~]{1}([^\*]+)[~]{1}/g, (match, i) => (
+        <u key={match + count++}>{match}</u>
     ));
 
     // Replace mdash to ---
     str = rr(str, '---', (match, i) => (
-        <span key={match + count++}> &mdash; </span>
+        <span key={match + count++}>&mdash;</span>
     ));
 
     // Replace ndash to --
     str = rr(str, '--', (match, i) => (
-        <span key={match + count++}> &ndash; </span>
+        <span key={match + count++}>&ndash;</span>
     ));
 
     // Replace html break

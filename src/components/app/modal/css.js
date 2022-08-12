@@ -155,8 +155,6 @@ export const ColorGridItem = styled.div`
     }
 `;
 
-
-
 export const StyledDialogActions = styled(DialogActions)`
     display: flex;
     justify-content: space-between;
@@ -169,6 +167,7 @@ export const StyledDialogTitle = styled(DialogTitle)`
 
 export const StyledDialogContent = styled(DialogContent)`
     overflow: hidden;
+    overflow-y: auto !important;
     white-space: pre-line;
 `;
 

@@ -20,12 +20,7 @@ export const DeckDialogContent = styled(DialogContent)`
     gap: 4px;
 `;
 
-export const DeckDivider = styled.div`
-    flex: 0 0 100%;
-    background-color: black;
-    border-radius: 2px;
-    height: 4px;
-`;
+
 
 export const DeckCard = styled.div`
     flex: 0 1 calc(25% - 24px);

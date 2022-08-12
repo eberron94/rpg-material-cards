@@ -237,7 +237,7 @@ const saneStr = (input, fallback) => {
     return saneStr(String(input || ''), fallback);
 };
 
-export const sampleDeck = () => ({
+export const sampleDeck = () => duplicateDeckState({
     _idv4: 'bf14147',
     name: 'Sample Cards',
     cards: [

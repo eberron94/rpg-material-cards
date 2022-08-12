@@ -70,6 +70,7 @@ export const InputContainer = styled.div`
 
 export const TextInput = styled(TextField)`
     width: 100%;
+    flex: ${(e) => e.flex || 1};
 `;
 
 export const SelectInput = styled(Select)`
@@ -188,3 +189,11 @@ export const StyledCheckbox = styled(({ checked, onChange, ...props }) => {
         />
     );
 })``;
+
+export const FlexDivider = styled.div`
+    flex: 0 0 100%;
+    background-color: black;
+    border-radius: 2px;
+    height: 4px;
+    margin: 4px;
+`;

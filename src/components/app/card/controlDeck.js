@@ -45,7 +45,6 @@ export default ({ cardId, iconMap, dispatch }) => {
                                 cardData={cc}
                                 options={options}
                                 value={i}
-                                nthLabel={i + 1 + '/' + deck.length}
                             />
                         ))}
                     </SelectInput>

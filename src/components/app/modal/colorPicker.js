@@ -1,13 +1,16 @@
 import CloseIcon from '@mui/icons-material/Close';
 import {
     Dialog,
+    DialogActions,
     DialogContent,
     IconButton,
+    Typography,
     useMediaQuery,
     useTheme,
 } from '@mui/material';
 import * as color from '@mui/material/colors';
 import React from 'react';
+import { FlexDivider, Label, Row, StyledTipButton, TextInput } from '../css';
 import {
     ColorGridContainer,
     ColorGridItem,
@@ -16,6 +19,8 @@ import {
     PickerButton,
     PickerLabel,
     PickerSwatch,
+    StyledDialogActions,
+    StyledDialogContent,
     StyledDialogTitle,
 } from './css';
 
@@ -23,6 +28,7 @@ const colorIndex = [900, 800, 700, 600, 500, 400, 300, 200];
 
 export default ({ value, defaultValue, onChange, disabled }) => {
     const [open, setOpen] = React.useState(false);
+    const [customColor, setCustomColor] = React.useState('');
 
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('lg'));
@@ -67,7 +73,7 @@ export default ({ value, defaultValue, onChange, disabled }) => {
                         <CloseIcon />
                     </IconButton>
                 </StyledDialogTitle>
-                <DialogContent dividers>
+                <StyledDialogContent dividers>
                     <ColorGridContainer>
                         {defaultValue ? (
                             <ColorRow
@@ -98,7 +104,20 @@ export default ({ value, defaultValue, onChange, disabled }) => {
                         <ColorRow hue='deepOrange' onClick={updateColor} />
                         <ColorRow hue='brown' onClick={updateColor} />
                     </ColorGridContainer>
-                </DialogContent>
+                    <FlexDivider />
+                    <ColorGridRow>
+                        <Label>Enter a custom color</Label>
+                        <TextInput
+                            value={customColor}
+                            onChange={(e) => setCustomColor(e.target.value)}
+                        />
+                        <StyledTipButton
+                            onClick={() => updateColor(customColor)}
+                        >
+                            Use Custom Color
+                        </StyledTipButton>
+                    </ColorGridRow>
+                </StyledDialogContent>
             </Dialog>
         </>
     );
