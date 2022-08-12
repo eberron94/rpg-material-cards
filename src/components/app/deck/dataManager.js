@@ -5,7 +5,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import PrintIcon from '@mui/icons-material/Print';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { initialState } from '../../../data/model';
+import { initialState, sampleDeck } from '../../../data/model';
 import selectors from '../../../selectors';
 import {
     Column,
@@ -23,7 +23,7 @@ export default ({ dispatch, iconMap }) => {
         title: 'Are you sure you want to add the sample cards?',
         message:
             'This will add all the sample cards to the current deck. You can delete them later.\nThe sample cards explain how each content line works.',
-        onConfirm: () => dispatch.deck.addCardsFromData(initialState().cards),
+        onConfirm: () => dispatch.deck.addCardsFromData(sampleDeck().cards),
     };
 
     const deleteAllProps = {
@@ -45,7 +45,7 @@ export default ({ dispatch, iconMap }) => {
     return (
         <Column>
             <Row>
-                <StyledTipButton variant='outlined' tooltip='Under construction' disabled>
+                <StyledTipButton variant='outlined' disabled>
                     <HelpIcon />
                     Help
                 </StyledTipButton>
