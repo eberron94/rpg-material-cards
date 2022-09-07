@@ -220,7 +220,7 @@ const applyScaling = (scaledWrapper, scaledContent, shrink) => {
         scaledWrapper.getBoundingClientRect()
     );
 
-    // console.log(scaler, shrink, scaler > 0.9);
+    console.log(scaler, shrink, scaler > 0.9);
 
     if (shrink && scaler > 0.9) {
         scaler = scaler * 0.99;

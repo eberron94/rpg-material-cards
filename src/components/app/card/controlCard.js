@@ -45,7 +45,6 @@ export default ({ cardId, iconMap, dispatch }) => {
         ref: useRef(),
         onChange: (e) => setBody(e.target.value),
         onKeyDown: (e) => {
-            e.preventDefault();
             const startSelect = e.target.selectionStart;
             const endSelect = e.target.selectionEnd;
 
@@ -84,21 +83,20 @@ export default ({ cardId, iconMap, dispatch }) => {
 
             switch (e.key) {
                 case 'b':
+                    e.preventDefault();
                     if (!isBold && !isBoldItalics)
                         textArr = [start + '**', selected, '**' + end];
                     else textArr = unbold(start, selected, end);
                     return finish();
                 case 'i':
+                    e.preventDefault();
                     if (!isItalics && !isBoldItalics)
                         textArr = [start + '*', selected, '*' + end];
                     else textArr = unitalics(start, selected, end);
                     return finish();
-                case 's':
-                    if (!isStriked && !isStrikedUnderlined)
-                        textArr = [start + '~~', selected, '~~' + end];
-                    else textArr = unbold(start, selected, end);
-                    return finish();
+
                 case 'u':
+                    e.preventDefault();
                     if (!isUnderlined && !isStrikedUnderlined)
                         textArr = [start + '~', selected, '~' + end];
                     else textArr = unitalics(start, selected, end);
@@ -281,9 +279,6 @@ const getTextSelection = (text, start, end) => {
     const isItalics =
         surr1.every((e) => e === '*' || e === '_') && surr1[0] === surr1[1];
 
-    const isStrikedUnderlined =
-        surr3.every((e) => e === '~~~') && surr3[0] === surr3[1];
-    const isStriked = surr2.every((e) => e === '~~') && surr2[0] === surr2[1];
     const isUnderlined = surr1.every((e) => e === '~') && surr1[0] === surr1[1];
 
     return {
@@ -291,9 +286,7 @@ const getTextSelection = (text, start, end) => {
         selected: selectedArr.join(''),
         end: endArr.join(''),
 
-        isStrikedUnderlined,
-        isStriked: isStriked && !isStrikedUnderlined,
-        isUnderlined: isUnderlined && !isStriked && !isStrikedUnderlined,
+        isUnderlined,
 
         isBoldItalics,
         isBold: isBold && !isBoldItalics,

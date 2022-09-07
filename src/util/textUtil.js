@@ -11,10 +11,42 @@ const PF2eAction = styled.span`
 const stylize = (str) => {
     let count = 0;
 
+    // Add biu to ~***string***~
+    str = rr(str, /[~]{1}[_*]{3}([^\*]+)[_*]{3}[~]{1}/g, (match, i) => (
+        <strong key={match + count++}>
+            <em>
+                <u>{match}</u>
+            </em>
+        </strong>
+    ));
+
+    // Add biu to ***~string~***
+    str = rr(str, /[_*]{3}[~]{1}([^\*]+)[~]{1}[_*]{3}/g, (match, i) => (
+        <strong key={match + count++}>
+            <em>
+                <u>{match}</u>
+            </em>
+        </strong>
+    ));
+
     // Add bold and italics to ***string***
     str = rr(str, /[_*]{3}([^\*]+)[_*]{3}/g, (match, i) => (
         <strong key={match + count++}>
             <em>{match}</em>
+        </strong>
+    ));
+
+    // Add bu to ~**string**~
+    str = rr(str, /[~]{1}[_*]{2}([^\*]+)[_*]{2}[~]{1}/g, (match, i) => (
+        <strong key={match + count++}>
+            <u>{match}</u>
+        </strong>
+    ));
+
+    // Add bu to **~string~**
+    str = rr(str, /[_*]{2}[~]{1}([^\*]+)[~]{1}[_*]{2}/g, (match, i) => (
+        <strong key={match + count++}>
+            <u>{match}</u>
         </strong>
     ));
 
@@ -23,21 +55,23 @@ const stylize = (str) => {
         <strong key={match + count++}>{match}</strong>
     ));
 
+    // Add iu to ~*string*~
+    str = rr(str, /[~]{1}[_*]{1}([^\*]+)[_*]{1}[~]{1}/g, (match, i) => (
+        <em key={match + count++}>
+            <u>{match}</u>
+        </em>
+    ));
+
+    // Add iu to *~string~*
+    str = rr(str, /[_*]{1}[~]{1}([^\*]+)[~]{1}[_*]{1}/g, (match, i) => (
+        <em key={match + count++}>
+            <u>{match}</u>
+        </em>
+    ));
+
     // Add italics to *string*
     str = rr(str, /[_*]{1}([^\*]+)[_*]{1}/g, (match, i) => (
         <em key={match + count++}>{match}</em>
-    ));
-
-    // Add strike and underline to ~~~string~~~
-    str = rr(str, /[~]{3}([^\*]+)[~]{3}/g, (match, i) => (
-        <s key={match + count++}>
-            <u>{match}</u>
-        </s>
-    ));
-
-    // Add underline to ~~string~~
-    str = rr(str, /[~]{2}([^\*]+)[~]{2}/g, (match, i) => (
-        <s key={match + count++}>{match}</s>
     ));
 
     // Add underline to ~string~
@@ -103,4 +137,6 @@ const stylize = (str) => {
     return str;
 };
 
-export default { stylize };
+export default {
+    stylize,
+};
