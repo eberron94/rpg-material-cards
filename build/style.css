@@ -1,0 +1,33 @@
+body {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+#root {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* column-gap: 8px; */
+}
+
+@font-face {
+    font-family: PF2E;
+    src: url('../font/Pathfinder2eActions.ttf');
+}
+
+@media print {
+    #root {
+        display: block;
+    }
+
+    @page {
+        margin: 0;
+    }
+}
+
+body
+    > div.MuiDialog-root
+    > div.MuiDialog-container.MuiDialog-scrollPaper
+    > div
+    > div.MuiDialogContent-root {
+    overflow: hidden;
+}
