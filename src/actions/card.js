@@ -8,6 +8,7 @@ const types = {
     ICON_FRONT: 'card.set.icon-front',
     ICON_BACK: 'card.set.icon-back',
     COLOR: 'card.set.color',
+    CODE: 'card.set.code',
 };
 
 const actions = {
@@ -45,6 +46,10 @@ const actions = {
     }),
     setColor: (value) => ({
         type: types.COLOR,
+        value,
+    }),
+    setCode: (value) => ({
+        type: types.CODE,
         value,
     }),
 };

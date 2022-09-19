@@ -36,9 +36,10 @@ const getIconObject = (iconString, iconMap) => {
 };
 
 const splitParams = (value) => {
-    return String(value).replace(/(\\\|)/g, '~#~')
+    return String(value)
+        .replace(/(\\\|)/g, '~#~')
         .split('|')
-        .map((str) => str.replace(/~#~/g,'|').trim());
+        .map((str) => str.replace(/~#~/g, '|').trim());
 };
 
 const colorFront = ({ cardData, options }) => {
@@ -103,6 +104,10 @@ const cardCount = ({ cardData, options }) => {
     return Number(cardData.count) || Number(options.default_count) || 1;
 };
 
+const titleCodeString = ({ cardData, options }) => {
+    return cardData.code || '';
+};
+
 const titleTextString = ({ cardData, options }) => {
     return cardData.title || '';
 };
@@ -158,6 +163,10 @@ const boxSize = ({ params }) => {
 const d20AbilityScores = ({ params }) => {
     const [str = 10, dex = 10, con = 10, int = 10, wis = 10, cha = 10] = params;
     return [str, dex, con, int, wis, cha];
+};
+
+const titleFormat = ({ cardData, options, iconMap }) => {
+    return options.title_format || 'name-icon';
 };
 
 const propertyTextArray = ({ params }) => {
@@ -229,6 +238,7 @@ export default {
     colorBack,
     iconFront,
     iconBack,
+    titleCodeString,
     titleTextString,
     titleTextFont,
     bodyTextFont,
@@ -256,4 +266,5 @@ export default {
     cardCount,
     joinClass,
     scale,
+    titleFormat,
 };

@@ -90,7 +90,8 @@ export const CardFrontContentContainer = styled('div')`
 `;
 
 export const IconFront = styled.div`
-    padding: 1mm;
+    // padding: 0 1mm;
+    position: relative;
     width: ${sized(5)};
     height: ${sized(5)};
 
@@ -120,7 +121,7 @@ export const IconBack = styled.div`
 `;
 
 export const Title = styled.div`
-    padding-left: ${sized(2)};
+    // padding-left: ${sized(2)};
     font-family: Lora, 'Calisto MT', 'Bookman Old Style', Bookman,
         'Goudy Old Style', Garamond, 'Hoefler Text', 'Bitstream Charter',
         Georgia, serif;
@@ -129,15 +130,27 @@ export const Title = styled.div`
     background-color: inherit;
     color: white;
 
+    padding: ${sized(1)} 0;
+
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
     font-size: ${(e) => e.fontSize}pt;
 
     .card-pfaction {
         filter: invert(1);
+    }
+
+    .card-title-name {
+        flex-grow: 10;
+        padding-left: ${sized(2)};
+    }
+
+    .card-title-code {
+        padding-left: ${sized(2)};
+        font-size: 8pt;
     }
 `;
 

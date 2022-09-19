@@ -34,6 +34,11 @@ export default ({ dispatch }) => {
             dispatch.deck.setHeight(e.target.value + sizeProp.value),
     };
 
+    const titleFormatProps = {
+        value: useSelector(selectors.defaults.titleFormat),
+        onChange: (e) => dispatch.deck.setTitleFormat(e.target.value),
+    };
+
     const makeDefaultSize = (label, width, height) => (
         <Button
             variant='outlined'
@@ -56,75 +61,106 @@ export default ({ dispatch }) => {
     };
 
     return (
-        <Row align='flex-start'>
-            <Column>
-                <Row>
-                    <Label>Width</Label>
-                    <InputContainer>
-                        <TextInput
-                            type='number'
-                            min='1'
-                            variant='standard'
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position='end'>
-                                        {sizeProp.value}
-                                    </InputAdornment>
-                                ),
-                            }}
-                            {...widthProps}
-                        />
-                    </InputContainer>
-                </Row>
-                <Row>
-                    <Label>Height</Label>
-                    <InputContainer>
-                        <TextInput
-                            type='number'
-                            min='1'
-                            variant='standard'
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position='end'>
-                                        {sizeProp.value}
-                                    </InputAdornment>
-                                ),
-                            }}
-                            {...heightProps}
-                        />
-                    </InputContainer>
-                </Row>
-                <Row>
-                    <Label>Unit</Label>
-                    <InputContainer>
-                        <SelectInput native variant='standard' {...sizeProp}>
-                            <option value=''>Millimeter</option>
-                            <option value='in'>Inch</option>
-                        </SelectInput>
-                    </InputContainer>
-                </Row>
-                <Row>
-                    <Button
-                        color='primary'
-                        onClick={onRotate}
-                        tooltip='Switch between landscape and portrait orientation'
-                    >
-                        Rotate orientation
-                    </Button>
-                </Row>
-            </Column>
-            <Column gap='4'>
-                <Row>
-                    <LeftLabel>Preset Card Sizes</LeftLabel>
-                </Row>
-                <Row>{makeDefaultSize('Business Card', '2in', '3.5in')}</Row>
-                <Row>{makeDefaultSize('Playing Card', '2.5in', '3.5in')}</Row>
-                <Row>{makeDefaultSize('Flash Card', '3in', '5in')}</Row>
-                <Row>{makeDefaultSize('Postcard', '4.25in', '5.5in')}</Row>
-                <Row>{makeDefaultSize('Index Card', '5in', '6in')}</Row>
-                <Row>{makeDefaultSize('A5', '148mm', '210mm')}</Row>
-                <Row>{makeDefaultSize('A6', '105mm', '148mm')}</Row>
-            </Column>
-        </Row>
+        <Column>
+            <Row align='flex-start'>
+                <Column>
+                    <Row>
+                        <Label>Width</Label>
+                        <InputContainer>
+                            <TextInput
+                                type='number'
+                                min='1'
+                                variant='standard'
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            {sizeProp.value}
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                {...widthProps}
+                            />
+                        </InputContainer>
+                    </Row>
+                    <Row>
+                        <Label>Height</Label>
+                        <InputContainer>
+                            <TextInput
+                                type='number'
+                                min='1'
+                                variant='standard'
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position='end'>
+                                            {sizeProp.value}
+                                        </InputAdornment>
+                                    ),
+                                }}
+                                {...heightProps}
+                            />
+                        </InputContainer>
+                    </Row>
+                    <Row>
+                        <Label>Unit</Label>
+                        <InputContainer>
+                            <SelectInput
+                                native
+                                variant='standard'
+                                {...sizeProp}
+                            >
+                                <option value=''>Millimeter</option>
+                                <option value='in'>Inch</option>
+                            </SelectInput>
+                        </InputContainer>
+                    </Row>
+                    <Row>
+                        <Button
+                            color='primary'
+                            onClick={onRotate}
+                            tooltip='Switch between landscape and portrait orientation'
+                        >
+                            Rotate orientation
+                        </Button>
+                    </Row>
+                </Column>
+                <Column gap='4'>
+                    <Row>
+                        <LeftLabel>Preset Card Sizes</LeftLabel>
+                    </Row>
+                    <Row>
+                        {makeDefaultSize('Business Card', '2in', '3.5in')}
+                    </Row>
+                    <Row>
+                        {makeDefaultSize('Playing Card', '2.5in', '3.5in')}
+                    </Row>
+                    <Row>{makeDefaultSize('Flash Card', '3in', '5in')}</Row>
+                    <Row>{makeDefaultSize('Postcard', '4.25in', '5.5in')}</Row>
+                    <Row>{makeDefaultSize('Index Card', '5in', '6in')}</Row>
+                    <Row>{makeDefaultSize('A5', '148mm', '210mm')}</Row>
+                    <Row>{makeDefaultSize('A6', '105mm', '148mm')}</Row>
+                </Column>
+            </Row>
+            <Row>
+            <Row>
+                        <Label>Title Layout</Label>
+                        <InputContainer>
+                            <SelectInput
+                                native
+                                variant='standard'
+                                {...titleFormatProps}
+                            >
+                                <option value='name-icon'>name --- icon</option>
+                                <option value='name-code'>name --- code</option>
+                                <option value='name-icon-code'>name -- icon -- code</option>
+                                <option value='name-code-icon'>name -- code -- icon</option>
+                                <option value='icon-name-code'>icon -- name -- code</option>
+                                <option value='code-name-icon'>code -- name -- icon</option>
+                                <option value='icon-code-name'>icon -- code -- name</option>
+                                <option value='code-icon-name'>code -- icon -- name</option>
+                            </SelectInput>
+                        </InputContainer>
+                    </Row>
+            </Row>
+        </Column>
     );
 };

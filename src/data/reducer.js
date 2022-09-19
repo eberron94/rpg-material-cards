@@ -153,6 +153,24 @@ export const rootReducer = (state = initialState(), action) => {
         case types.deck.SET_OPTIONS:
             newState.options = duplicateOptions(value);
             return newState;
+
+        case types.deck.SET_TITLE_FORMAT:
+            switch (value) {
+                case 'icon-name-code':
+                case 'icon-code-name':
+
+                case 'code-name-icon':
+                case 'code-icon-name':
+
+                case 'name-icon-code':
+                case 'name-code-icon':
+
+                case 'name-icon':
+                case 'name-code':
+                    newState.options.title_format = value;
+            }
+
+            return newState;
     }
 
     // Handle card actions
@@ -189,6 +207,10 @@ export const rootReducer = (state = initialState(), action) => {
             return newState;
         case types.card.BODY:
             newState.cards[currIndex].contents = value;
+            return newState;
+
+        case types.card.CODE:
+            newState.cards[currIndex].code = value;
             return newState;
     }
 

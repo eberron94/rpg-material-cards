@@ -15,6 +15,7 @@ export const createDispatch = (store) => ({
             store.dispatch(card.actions.setIconFront(value)),
         setIconBack: (value) => store.dispatch(card.actions.setIconBack(value)),
         setColor: (value) => store.dispatch(card.actions.setColor(value)),
+        setCode: (value) => store.dispatch(card.actions.setCode(value)),
     },
     deck: {
         delete: (id) => store.dispatch(deck.actions.delete(id)),
@@ -44,6 +45,8 @@ export const createDispatch = (store) => ({
         setOptions: (value) => store.dispatch(deck.actions.setOptions(value)),
         setDeck: (value) => store.dispatch(deck.actions.setDeck(value)),
         setName: (value) => store.dispatch(deck.actions.setName(value)),
+        setTitleFormat: (value) =>
+            store.dispatch(deck.actions.setTitleFormat(value)),
     },
     page: {
         setWidth: (value) => store.dispatch(page.actions.setWidth(value)),

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import selectors from '../../../selectors';
 import { cape } from '../../../util/dataUtil';
 import {
+    Column,
     ContentArea,
     InputContainer,
     Label,
@@ -88,6 +89,7 @@ export default ({ cardId, iconMap, dispatch }) => {
                         textArr = [start + '**', selected, '**' + end];
                     else textArr = unbold(start, selected, end);
                     return finish();
+
                 case 'i':
                     e.preventDefault();
                     if (!isItalics && !isBoldItalics)
@@ -161,6 +163,12 @@ export default ({ cardId, iconMap, dispatch }) => {
         color: colorProps.value || colorProps.defaultValue,
     };
 
+    const codeProps = {
+        value: useSelector(selectors.card.code) || '',
+        onChange: (e) => dispatch.card.setCode(e.target.value),
+        disabled,
+    };
+
     return (
         <>
             <Row>
@@ -217,9 +225,9 @@ export default ({ cardId, iconMap, dispatch }) => {
             </Row>
 
             <Row>
-                <Label>QR Code</Label>
+                <Label>Code</Label>
                 <InputContainer>
-                    <TextInput variant='standard' {...qrProps} />
+                    <TextInput variant='standard' {...codeProps} />
                 </InputContainer>
             </Row>
 

@@ -20,6 +20,8 @@ const types = {
 
     SET_DECK: 'deck.set.all',
     SET_NAME: 'deck.set.name',
+
+    SET_TITLE_FORMAT: 'deck.set.title.format',
 };
 
 const actions = {
@@ -60,6 +62,7 @@ const actions = {
     setOptions: (value) => ({ type: types.SET_OPTIONS, value }),
     setDeck: (value) => ({ type: types.SET_DECK, value }),
     setName: (value) => ({ type: types.SET_NAME, value }),
+    setTitleFormat: (value) => ({ type: types.SET_TITLE_FORMAT, value }),
 };
 
 export default { types, actions };

@@ -22,6 +22,7 @@ export default {
         color: (state) => {
             return cCard(state)?.color;
         },
+        code: (state) => cCard(state)?.code,
     },
     cardList: (state) => state.cards,
     defaults: {
@@ -39,6 +40,7 @@ export default {
             String(state.options.page_width).includes('in') ? 'in' : 'mm',
         pageRow: (state) => state.options.page_rows,
         pageCol: (state) => state.options.page_columns,
+        titleFormat: (state) => state.options.title_format,
         shrink: (state) => state.options.shrink,
         scale: (state) => state.options.scale,
         name: (state) => state.name,
