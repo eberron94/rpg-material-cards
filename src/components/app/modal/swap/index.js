@@ -46,7 +46,7 @@ export default ({ dispatch, iconMap }) => {
 
     const handleClickOpen = () => {
         const loadedDecks = loadStorage('deckList');
-        setDecks(loadedDecks);
+        setDecks(loadedDecks || []);
         setOpen(true);
     };
 
