@@ -192,6 +192,7 @@ export const duplicateOptions = ({
     newOptions.scale = saneIntPositive(scale, newOptions.scale);
     newOptions.shrink = Boolean(shrink);
 
+
     return newOptions;
 };
 
@@ -203,6 +204,7 @@ const sanitize = ({
     icon_front,
     icon_back,
     qr,
+    code,
     title_font_size,
     body_font_size,
     contents = [],
@@ -216,6 +218,7 @@ const sanitize = ({
     saneCard.icon_front = saneStr(icon_front || icon || '', '');
     saneCard.icon_back = saneStr(icon_back, '');
     saneCard.qr = saneStr(qr, '');
+    saneCard.code = saneStr(code, '');
     saneCard.title_font_size = saneIntPositive(title_font_size, 0);
     saneCard.body_font_size = saneIntPositive(body_font_size, 0);
     saneCard.contents = cape(contents)
