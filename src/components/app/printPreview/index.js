@@ -89,7 +89,7 @@ export default ({ iconMap }) => {
         );
         collatedPages.push(frontPage);
 
-        if (isDouble) collatedPages.push(backPage);
+        // if (isDouble) collatedPages.push(backPage);
     });
 
     return <div onLoad={window.print()}>{collatedPages}</div>;
